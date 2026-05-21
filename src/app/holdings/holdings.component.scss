@@ -49,3 +49,14 @@ td.mat-mdc-cell {
   padding: 48px 0;
   margin: 0;
 }
+
+@media (max-width: 599px) {
+  .hide-sm {
+    display: none;
+  }
+
+  th.mat-mdc-header-cell,
+  td.mat-mdc-cell {
+    padding: 8px 6px;
+  }
+}
