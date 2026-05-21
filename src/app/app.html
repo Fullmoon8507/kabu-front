@@ -1,18 +1,7 @@
-<main class="page">
-  <div class="card">
-    <h1 class="title">Hello World</h1>
-    <p class="subtitle">株式ポートフォリオ管理</p>
+<mat-toolbar color="primary" class="toolbar">
+  <span class="toolbar-title">株式ポートフォリオ管理</span>
+</mat-toolbar>
 
-    <div class="api-status">
-      @if (isLoading()) {
-        <span class="status loading">API に接続中...</span>
-      } @else if (apiError()) {
-        <span class="status error">API に接続できません</span>
-      } @else {
-        <span class="status ok">{{ apiMessage() }}</span>
-      }
-    </div>
-  </div>
-</main>
-
-<router-outlet />
+<div class="content">
+  <router-outlet />
+</div>

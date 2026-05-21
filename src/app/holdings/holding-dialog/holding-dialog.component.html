@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>{{ data ? '取引編集' : '取引追加' }}</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="form" class="dialog-form">
+    <mat-form-field appearance="outline">
+      <mat-label>銘柄コード</mat-label>
+      <input matInput formControlName="ticker_code" placeholder="例: 7203" />
+      @if (form.controls.ticker_code.hasError('required')) {
+        <mat-error>銘柄コードは必須です</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>購入日</mat-label>
+      <input matInput type="date" formControlName="purchase_date" />
+      @if (form.controls.purchase_date.hasError('required')) {
+        <mat-error>購入日は必須です</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>購入単価（円）</mat-label>
+      <input matInput type="number" formControlName="purchase_price" min="0" />
+      @if (form.controls.purchase_price.hasError('required')) {
+        <mat-error>購入単価は必須です</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>数量（株）</mat-label>
+      <input matInput type="number" formControlName="quantity" min="1" />
+      @if (form.controls.quantity.hasError('required')) {
+        <mat-error>数量は必須です</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>メモ（任意）</mat-label>
+      <textarea matInput formControlName="note" rows="2"></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>キャンセル</button>
+  <button mat-flat-button color="primary" [disabled]="form.invalid" (click)="save()">保存</button>
+</mat-dialog-actions>
