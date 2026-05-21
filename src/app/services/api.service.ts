@@ -8,6 +8,13 @@ export interface ApiHealthResponse {
   message: string;
 }
 
+export interface Stock {
+  ticker_code: string;
+  company_name: string;
+  sector: string | null;
+  is_active: boolean;
+}
+
 export interface Holding {
   id: number;
   ticker_code: string;
@@ -40,6 +47,10 @@ export class ApiService {
 
   getHealth(): Observable<ApiHealthResponse> {
     return this.http.get<ApiHealthResponse>(`${this.baseUrl}/`);
+  }
+
+  getStocks(): Observable<Stock[]> {
+    return this.http.get<Stock[]>(`${this.baseUrl}/stocks`);
   }
 
   getHoldings(): Observable<Holding[]> {
