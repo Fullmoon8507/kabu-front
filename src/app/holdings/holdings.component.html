@@ -1,0 +1,68 @@
+<mat-card>
+  <mat-card-header class="card-header">
+    <mat-card-title>保有株一覧</mat-card-title>
+    <button mat-flat-button color="primary" (click)="openDialog()">
+      <mat-icon>add</mat-icon> 追加
+    </button>
+  </mat-card-header>
+
+  <mat-card-content>
+    @if (isLoading()) {
+      <div class="loading">
+        <mat-spinner diameter="40"></mat-spinner>
+      </div>
+    } @else if (holdings().length === 0) {
+      <p class="empty">取引データがありません。「追加」ボタンから登録してください。</p>
+    } @else {
+      <div class="table-wrapper">
+        <table mat-table [dataSource]="holdings()">
+
+          <ng-container matColumnDef="ticker_code">
+            <th mat-header-cell *matHeaderCellDef>銘柄コード</th>
+            <td mat-cell *matCellDef="let row">{{ row.ticker_code }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="purchase_date">
+            <th mat-header-cell *matHeaderCellDef>購入日</th>
+            <td mat-cell *matCellDef="let row">{{ row.purchase_date | date:'yyyy/MM/dd' }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="purchase_price">
+            <th mat-header-cell *matHeaderCellDef>単価（円）</th>
+            <td mat-cell *matCellDef="let row" class="number">{{ row.purchase_price | number }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef>数量</th>
+            <td mat-cell *matCellDef="let row" class="number">{{ row.quantity | number }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="total">
+            <th mat-header-cell *matHeaderCellDef>評価額（円）</th>
+            <td mat-cell *matCellDef="let row" class="number">{{ totalValue(row) | number }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="note">
+            <th mat-header-cell *matHeaderCellDef>メモ</th>
+            <td mat-cell *matCellDef="let row">{{ row.note ?? '—' }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let row" class="actions">
+              <button mat-icon-button color="primary" (click)="openDialog(row)" title="編集">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteHolding(row.id)" title="削除">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    }
+  </mat-card-content>
+</mat-card>

@@ -1,31 +1,11 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ApiService } from './services/api.service';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule],
+  imports: [RouterOutlet, MatToolbarModule],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App implements OnInit {
-  private readonly apiService = inject(ApiService);
-
-  apiMessage = signal<string | null>(null);
-  apiError = signal(false);
-  isLoading = signal(true);
-
-  ngOnInit() {
-    this.apiService.getHealth().subscribe({
-      next: (res) => {
-        this.apiMessage.set(res.message);
-        this.isLoading.set(false);
-      },
-      error: () => {
-        this.apiError.set(true);
-        this.isLoading.set(false);
-      },
-    });
-  }
-}
+export class App {}
