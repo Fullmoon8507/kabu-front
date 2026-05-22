@@ -5,12 +5,22 @@
 }
 
 .toolbar-title {
-  font-size: 1.1rem;
-  font-weight: 500;
+  flex: 1;
+  font-size: 1rem;
+}
+
+.toolbar-nav {
+  display: flex;
+  gap: 4px;
+
+  .nav-active {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+  }
 }
 
 .content {
-  padding: 24px;
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 900px;
+  margin: 24px auto;
+  padding: 0 16px;
 }
