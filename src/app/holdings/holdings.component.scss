@@ -37,6 +37,14 @@ td.mat-mdc-cell {
   text-align: right;
 }
 
+.clickable-row {
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+}
+
 .loading {
   display: flex;
   justify-content: center;

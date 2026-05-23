@@ -1,0 +1,32 @@
+.detail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding-top: 8px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding-bottom: 8px;
+
+  dt {
+    font-size: 0.85rem;
+    color: #666;
+    white-space: nowrap;
+  }
+
+  dd {
+    margin: 0;
+    font-weight: 500;
+    word-break: break-all;
+  }
+}
+
+.number {
+  font-variant-numeric: tabular-nums;
+}
