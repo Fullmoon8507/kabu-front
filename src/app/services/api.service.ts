@@ -24,6 +24,7 @@ export interface StockCreate {
 export interface Holding {
   id: number;
   ticker_code: string;
+  company_name: string;
   purchase_date: string;
   purchase_price: number;
   quantity: number;

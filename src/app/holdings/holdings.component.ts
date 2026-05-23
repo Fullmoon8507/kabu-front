@@ -33,7 +33,7 @@ export class HoldingsComponent implements OnInit {
 
   holdings = signal<Holding[]>([]);
   isLoading = signal(true);
-  displayedColumns = ['ticker_code', 'purchase_date', 'purchase_price', 'quantity', 'total', 'note', 'actions'];
+  displayedColumns = ['ticker_code', 'company_name', 'purchase_date', 'purchase_price', 'quantity', 'total', 'note', 'actions'];
 
   ngOnInit() {
     this.loadHoldings();
