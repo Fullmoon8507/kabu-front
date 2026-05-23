@@ -1,10 +1,15 @@
 <mat-card>
   <mat-card-header class="card-header">
     <mat-card-title>銘柄マスタ</mat-card-title>
-    <mat-form-field class="search-field" appearance="outline" subscriptSizing="dynamic">
-      <mat-label>銘柄コード・銘柄名で検索</mat-label>
-      <input matInput (input)="applyFilter($event)" placeholder="例：8267 / イオン" />
-    </mat-form-field>
+    <div class="header-right">
+      <mat-form-field class="search-field" appearance="outline" subscriptSizing="dynamic">
+        <mat-label>銘柄コード・銘柄名で検索</mat-label>
+        <input matInput (input)="applyFilter($event)" placeholder="例：8267 / イオン" />
+      </mat-form-field>
+      <button mat-flat-button color="primary" (click)="openAddDialog()">
+        <mat-icon>add</mat-icon> 追加
+      </button>
+    </div>
   </mat-card-header>
 
   <mat-card-content>

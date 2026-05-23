@@ -16,8 +16,15 @@ mat-card {
   }
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 .search-field {
-  width: 260px;
+  width: 240px;
 
   @media (max-width: 599px) {
     width: 100%;
