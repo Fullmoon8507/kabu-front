@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>銘柄を手動追加</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="form" class="dialog-form">
+    <mat-form-field appearance="outline">
+      <mat-label>銘柄コード</mat-label>
+      <input matInput formControlName="ticker_code" placeholder="例：2928" />
+      @if (form.controls.ticker_code.hasError('required')) {
+        <mat-error>銘柄コードは必須です</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>銘柄名</mat-label>
+      <input matInput formControlName="company_name" placeholder="例：RIZAPグループ" />
+      @if (form.controls.company_name.hasError('required')) {
+        <mat-error>銘柄名は必須です</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>業種（任意）</mat-label>
+      <input matInput formControlName="sector" placeholder="例：その他金融業" />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>キャンセル</button>
+  <button mat-flat-button color="primary" [disabled]="form.invalid" (click)="save()">登録</button>
+</mat-dialog-actions>

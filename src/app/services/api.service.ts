@@ -15,6 +15,12 @@ export interface Stock {
   is_active: boolean;
 }
 
+export interface StockCreate {
+  ticker_code: string;
+  company_name: string;
+  sector?: string;
+}
+
 export interface Holding {
   id: number;
   ticker_code: string;
@@ -51,6 +57,10 @@ export class ApiService {
 
   getStocks(): Observable<Stock[]> {
     return this.http.get<Stock[]>(`${this.baseUrl}/stocks`);
+  }
+
+  createStock(body: StockCreate): Observable<Stock> {
+    return this.http.post<Stock>(`${this.baseUrl}/stocks`, body);
   }
 
   getHoldings(): Observable<Holding[]> {
