@@ -22,6 +22,11 @@
             <td mat-cell *matCellDef="let row">{{ row.ticker_code }}</td>
           </ng-container>
 
+          <ng-container matColumnDef="company_name">
+            <th mat-header-cell *matHeaderCellDef>銘柄名</th>
+            <td mat-cell *matCellDef="let row">{{ row.company_name }}</td>
+          </ng-container>
+
           <ng-container matColumnDef="purchase_date">
             <th mat-header-cell *matHeaderCellDef class="hide-sm">購入日</th>
             <td mat-cell *matCellDef="let row" class="hide-sm">{{ row.purchase_date | date:'yyyy/MM/dd' }}</td>
