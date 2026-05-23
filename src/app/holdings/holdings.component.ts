@@ -57,6 +57,7 @@ export class HoldingsComponent implements OnInit {
     const ref = this.dialog.open(HoldingDialogComponent, {
       data: holding ?? null,
       width: '420px',
+      disableClose: true,
     });
 
     ref.afterClosed().subscribe((result) => {
