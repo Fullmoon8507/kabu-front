@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>銘柄詳細</h2>
+
+<mat-dialog-content>
+  <dl class="detail-list">
+    <div class="detail-row">
+      <dt>銘柄コード</dt>
+      <dd>{{ data.ticker_code }}</dd>
+    </div>
+    <div class="detail-row">
+      <dt>銘柄名</dt>
+      <dd>{{ data.company_name }}</dd>
+    </div>
+    <div class="detail-row">
+      <dt>購入日</dt>
+      <dd>{{ data.purchase_date | date:'yyyy/MM/dd' }}</dd>
+    </div>
+    <div class="detail-row">
+      <dt>単価（円）</dt>
+      <dd class="number">{{ data.purchase_price | number }}</dd>
+    </div>
+    <div class="detail-row">
+      <dt>数量</dt>
+      <dd class="number">{{ data.quantity | number }}</dd>
+    </div>
+    <div class="detail-row">
+      <dt>評価額（円）</dt>
+      <dd class="number">{{ totalValue() | number }}</dd>
+    </div>
+    <div class="detail-row">
+      <dt>メモ</dt>
+      <dd>{{ data.note ?? '—' }}</dd>
+    </div>
+  </dl>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>閉じる</button>
+  <button mat-flat-button color="primary" (click)="dialogRef.close('edit')">編集</button>
+</mat-dialog-actions>

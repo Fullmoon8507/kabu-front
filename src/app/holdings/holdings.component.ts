@@ -10,6 +10,7 @@ import { DecimalPipe, DatePipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ApiService, Holding, HoldingCreate, HoldingUpdate } from '../services/api.service';
 import { HoldingDialogComponent } from './holding-dialog/holding-dialog.component';
+import { HoldingDetailDialogComponent } from './holding-detail-dialog/holding-detail-dialog.component';
 
 @Component({
   selector: 'app-holdings',
@@ -50,6 +51,16 @@ export class HoldingsComponent implements OnInit {
         this.snackBar.open('データの取得に失敗しました', '閉じる', { duration: 4000 });
         this.isLoading.set(false);
       },
+    });
+  }
+
+  openDetailDialog(holding: Holding) {
+    const ref = this.dialog.open(HoldingDetailDialogComponent, {
+      data: holding,
+      width: '360px',
+    });
+    ref.afterClosed().subscribe((result) => {
+      if (result === 'edit') this.openDialog(holding);
     });
   }
 
