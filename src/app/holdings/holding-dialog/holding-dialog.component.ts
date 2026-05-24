@@ -29,7 +29,7 @@ export class HoldingDialogComponent implements OnInit {
 
   readonly form = this.fb.group({
     ticker_code: [this.data?.ticker_code ?? '', Validators.required],
-    purchase_date: [this.data?.purchase_date ?? '', Validators.required],
+    purchase_date: [this.data?.purchase_date ?? ''],
     purchase_price: [this.data?.purchase_price ?? null, [Validators.required, Validators.min(0)]],
     quantity: [this.data?.quantity ?? null, [Validators.required, Validators.min(1)]],
     note: [this.data?.note ?? ''],
@@ -63,7 +63,7 @@ export class HoldingDialogComponent implements OnInit {
     const value = this.form.getRawValue();
     this.dialogRef.close({
       ticker_code: value.ticker_code,
-      purchase_date: value.purchase_date,
+      purchase_date: value.purchase_date || undefined,
       purchase_price: value.purchase_price,
       quantity: value.quantity,
       note: value.note || undefined,
