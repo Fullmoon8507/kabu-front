@@ -20,11 +20,8 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>購入日</mat-label>
+      <mat-label>購入日（任意）</mat-label>
       <input matInput type="date" formControlName="purchase_date" />
-      @if (form.controls.purchase_date.hasError('required')) {
-        <mat-error>購入日は必須です</mat-error>
-      }
     </mat-form-field>
 
     <mat-form-field appearance="outline">
