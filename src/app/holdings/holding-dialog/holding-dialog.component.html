@@ -4,7 +4,16 @@
   <form [formGroup]="form" class="dialog-form">
     <mat-form-field appearance="outline">
       <mat-label>銘柄コード</mat-label>
-      <input matInput formControlName="ticker_code" placeholder="例: 7203" />
+      <input matInput formControlName="ticker_code"
+             placeholder="例: 7203 または トヨタ"
+             [matAutocomplete]="auto" />
+      <mat-autocomplete #auto (optionSelected)="selectStock($event.option.value)">
+        @for (stock of filteredStocks(); track stock.ticker_code) {
+          <mat-option [value]="stock">
+            {{ stock.ticker_code }} - {{ stock.company_name }}
+          </mat-option>
+        }
+      </mat-autocomplete>
       @if (form.controls.ticker_code.hasError('required')) {
         <mat-error>銘柄コードは必須です</mat-error>
       }
