@@ -1,14 +1,15 @@
-<mat-toolbar color="primary" class="toolbar">
-  <span class="toolbar-title">株式ポートフォリオ管理</span>
-  @if (auth.isLoggedIn()) {
+@if (auth.isLoggedIn()) {
+  <mat-toolbar color="primary" class="toolbar">
+    <span class="toolbar-title">株式ポートフォリオ管理</span>
     <nav class="toolbar-nav">
       <a mat-button routerLink="/holdings" routerLinkActive="nav-active">保有株</a>
       <a mat-button routerLink="/stocks" routerLinkActive="nav-active">銘柄マスタ</a>
     </nav>
     <button mat-button (click)="auth.logout()">ログアウト</button>
-  }
-</mat-toolbar>
-
-<div class="content">
+  </mat-toolbar>
+  <div class="content">
+    <router-outlet />
+  </div>
+} @else {
   <router-outlet />
-</div>
+}
