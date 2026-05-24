@@ -1,0 +1,45 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>株式ポートフォリオ管理</mat-card-title>
+      <mat-card-subtitle>ログイン</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>ユーザー名</mat-label>
+          <input matInput formControlName="username" autocomplete="username" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>パスワード</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            autocomplete="current-password"
+          />
+        </mat-form-field>
+
+        @if (errorMessage) {
+          <p class="error-message">{{ errorMessage }}</p>
+        }
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          class="full-width"
+          [disabled]="form.invalid || loading"
+        >
+          @if (loading) {
+            <mat-spinner diameter="20" />
+          } @else {
+            ログイン
+          }
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
