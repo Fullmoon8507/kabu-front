@@ -19,5 +19,11 @@ export const routes: Routes = [
       import('./stocks/stocks.component').then((m) => m.StocksComponent),
     canActivate: [authGuard],
   },
+  {
+    path: 'backtest',
+    loadComponent: () =>
+      import('./backtest/backtest.component').then((m) => m.BacktestComponent),
+    canActivate: [authGuard],
+  },
   { path: '', redirectTo: 'holdings', pathMatch: 'full' },
 ];

@@ -1,0 +1,57 @@
+.page-container {
+  max-width: 700px;
+  margin: 24px auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 8px;
+
+  mat-form-field {
+    flex: 1;
+    min-width: 180px;
+  }
+}
+
+.error-card {
+  mat-card-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #c62828;
+  }
+}
+
+.result-card {
+  .result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    margin: 0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .result-label {
+    color: #555;
+    font-size: 14px;
+  }
+
+  .result-value {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .positive { color: #2e7d32; }
+  .negative { color: #c62828; }
+}

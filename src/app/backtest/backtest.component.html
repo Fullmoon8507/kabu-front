@@ -1,0 +1,83 @@
+<div class="page-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>バックテスト</mat-card-title>
+      <mat-card-subtitle>移動平均クロス戦略（初期資金100万円・手数料なし）</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>銘柄コード</mat-label>
+          <input matInput [(ngModel)]="ticker" placeholder="例: 7203.T">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>開始日</mat-label>
+          <input matInput type="date" [(ngModel)]="startDate">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>終了日</mat-label>
+          <input matInput type="date" [(ngModel)]="endDate">
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>短期MA（日数）</mat-label>
+          <input matInput type="number" [(ngModel)]="shortMa" min="1">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>長期MA（日数）</mat-label>
+          <input matInput type="number" [(ngModel)]="longMa" min="1">
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!canRun() || isLoading()"
+        (click)="run()">
+        @if (isLoading()) {
+          <mat-spinner diameter="20"></mat-spinner>
+        } @else {
+          <mat-icon>play_arrow</mat-icon>
+        }
+        実行
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  @if (errorMessage()) {
+    <mat-card class="error-card">
+      <mat-card-content>
+        <mat-icon>error_outline</mat-icon>
+        {{ errorMessage() }}
+      </mat-card-content>
+    </mat-card>
+  }
+
+  @if (result()) {
+    <mat-card class="result-card">
+      <mat-card-header>
+        <mat-card-title>結果</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="result-item">
+          <span class="result-label">総収益率</span>
+          <span class="result-value" [class.positive]="result()!.total_return_pct >= 0" [class.negative]="result()!.total_return_pct < 0">
+            {{ result()!.total_return_pct >= 0 ? '+' : '' }}{{ result()!.total_return_pct }}%
+          </span>
+        </p>
+        <p class="result-item">
+          <span class="result-label">取引回数</span>
+          <span class="result-value">{{ result()!.trade_count }} 回</span>
+        </p>
+      </mat-card-content>
+    </mat-card>
+  }
+</div>
