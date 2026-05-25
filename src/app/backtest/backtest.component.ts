@@ -179,7 +179,18 @@ export class BacktestComponent implements OnDestroy {
           },
         },
         scales: {
-          x: { ticks: { maxTicksLimit: 8, maxRotation: 0 } },
+          x: {
+            ticks: {
+              maxTicksLimit: 8,
+              maxRotation: 30,
+              callback: (_val, index) => {
+                const label = dates[index];
+                if (!label) return '';
+                const d = new Date(label);
+                return `${d.getMonth() + 1}/${d.getDate()}`;
+              },
+            },
+          },
           y: {
             ticks: {
               callback: (v) => `¥${Number(v).toLocaleString()}`,
