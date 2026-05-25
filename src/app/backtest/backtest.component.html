@@ -7,7 +7,7 @@
 
     <mat-card-content>
       <div class="form-row">
-        <mat-form-field appearance="outline" class="ticker-field">
+        <mat-form-field appearance="outline" class="ticker-field" subscriptSizing="dynamic">
           <mat-label>銘柄コード</mat-label>
           <input matInput [(ngModel)]="ticker" placeholder="例: 7203.T">
           <mat-hint>東証: 4桁でもOK（8267→8267.T） / 非東証はフル入力（2928.S）</mat-hint>
