@@ -183,11 +183,11 @@ export class BacktestComponent implements OnDestroy {
             ticks: {
               maxTicksLimit: 8,
               maxRotation: 30,
-              callback: (_val, index) => {
-                const label = dates[index];
+              callback: (value) => {
+                const label = dates[value as number];
                 if (!label) return '';
                 const d = new Date(label);
-                return `${d.getMonth() + 1}/${d.getDate()}`;
+                return `${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}`;
               },
             },
           },
