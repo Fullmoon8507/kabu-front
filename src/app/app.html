@@ -1,16 +1,53 @@
 @if (auth.isLoggedIn()) {
-  <mat-toolbar color="primary" class="toolbar">
-    <span class="toolbar-title">株式ポートフォリオ管理</span>
-    <nav class="toolbar-nav">
-      <a mat-button routerLink="/holdings" routerLinkActive="nav-active">保有株</a>
-      <a mat-button routerLink="/stocks" routerLinkActive="nav-active">銘柄マスタ</a>
-      <a mat-button routerLink="/backtest" routerLinkActive="nav-active">バックテスト</a>
-    </nav>
-    <button mat-button (click)="auth.logout()">ログアウト</button>
-  </mat-toolbar>
-  <div class="content">
-    <router-outlet />
-  </div>
+  <mat-sidenav-container class="sidenav-container">
+
+    <mat-sidenav
+      class="sidenav"
+      mode="over"
+      [opened]="sidenavOpen()"
+      (closedStart)="closeSidenav()">
+
+      <div class="sidenav-header">
+        <span class="sidenav-title">株式ポートフォリオ管理</span>
+      </div>
+
+      <mat-nav-list>
+        <a mat-list-item routerLink="/holdings" routerLinkActive="nav-active"
+           (click)="closeSidenav()">保有株</a>
+        <a mat-list-item routerLink="/stocks" routerLinkActive="nav-active"
+           (click)="closeSidenav()">銘柄マスタ</a>
+        <a mat-list-item routerLink="/backtest" routerLinkActive="nav-active"
+           (click)="closeSidenav()">バックテスト</a>
+      </mat-nav-list>
+
+      <div class="sidenav-footer">
+        <button mat-stroked-button (click)="auth.logout()">ログアウト</button>
+      </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <mat-toolbar color="primary" class="toolbar">
+        <button mat-icon-button class="hamburger" (click)="toggleSidenav()" aria-label="メニューを開く">
+          <mat-icon>menu</mat-icon>
+        </button>
+
+        <span class="toolbar-title">株式ポートフォリオ管理</span>
+
+        <nav class="toolbar-nav">
+          <a mat-button routerLink="/holdings" routerLinkActive="nav-active">保有株</a>
+          <a mat-button routerLink="/stocks" routerLinkActive="nav-active">銘柄マスタ</a>
+          <a mat-button routerLink="/backtest" routerLinkActive="nav-active">バックテスト</a>
+        </nav>
+
+        <button mat-button class="logout-btn" (click)="auth.logout()">ログアウト</button>
+      </mat-toolbar>
+
+      <div class="content">
+        <router-outlet />
+      </div>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
 } @else {
   <router-outlet />
 }
