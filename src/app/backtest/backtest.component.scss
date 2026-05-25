@@ -54,4 +54,10 @@
 
   .positive { color: #2e7d32; }
   .negative { color: #c62828; }
+
+  .chart-container {
+    position: relative;
+    height: 300px;
+    margin-top: 16px;
+  }
 }

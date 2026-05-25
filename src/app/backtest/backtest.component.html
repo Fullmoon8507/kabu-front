@@ -78,6 +78,9 @@
           <span class="result-label">取引回数</span>
           <span class="result-value">{{ result()!.trade_count }} 回</span>
         </p>
+        <div class="chart-container">
+          <canvas #chartCanvas></canvas>
+        </div>
       </mat-card-content>
     </mat-card>
   }
