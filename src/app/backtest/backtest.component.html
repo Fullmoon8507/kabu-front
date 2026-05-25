@@ -10,7 +10,7 @@
         <mat-form-field appearance="outline">
           <mat-label>銘柄コード</mat-label>
           <input matInput [(ngModel)]="ticker" placeholder="例: 7203.T">
-          <mat-hint>4桁の銘柄コードで入力（例: 8267）。東証・札証など全市場対応。</mat-hint>
+          <mat-hint>東証: 4桁のみでもOK（例: 8267 → 8267.T）／非東証はフル入力（例: 2928.S）</mat-hint>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
